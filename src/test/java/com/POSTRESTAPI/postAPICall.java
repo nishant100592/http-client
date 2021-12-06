@@ -49,6 +49,7 @@ public class postAPICall extends Base {
         //Marshalling, Jackson api
         ObjectMapper objectMapper = new ObjectMapper();
         String usersJsonString = objectMapper.writeValueAsString(usersRequestObject);
+        System.out.println("RequestJSONString ---> "+usersJsonString);
 
         //Triggering POST Call and saving response
         closeableHttpResponse = restClient.post(uri, headerMap, usersJsonString);
@@ -64,7 +65,7 @@ public class postAPICall extends Base {
         JSONObject jsonObject = new JSONObject(responseString);
         System.out.println("Response payload ---> "+jsonObject);
 
-        //Fetching name field value from response
+        //Fetching name field value from response JSON
         String name = Util.getValueByJPath(jsonObject, "/name");
         System.out.println("Value of name field ---> "+name);
 
